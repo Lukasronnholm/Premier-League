@@ -1,5 +1,5 @@
 import Home from './pages/Home'
-
+import Players from './pages/Players'
 import './App.css'
 
 
@@ -25,6 +25,9 @@ function App() {
         children: [
      
         { element: <Home />, path: '/' },
+        { element: <Players />, path: '/players' },
+
+
 
      
 

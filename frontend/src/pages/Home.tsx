@@ -1,4 +1,5 @@
 import { useEffect, useState} from "react"
+import { Link } from "react-router-dom"
 
 interface Teams {
     id: number
@@ -26,6 +27,7 @@ useEffect(()=>{
 return(
        
         <>
+        <Link to='/players'>players</Link>
         
              <ul className="ContainerText">{teams.map((team)=> (
                 <li key={team.id}>{team.position} {team.name} {team.played} {team.wins} {team.draws} {team.losses} {team.goal_difference} {team.points}</li>))}</ul>

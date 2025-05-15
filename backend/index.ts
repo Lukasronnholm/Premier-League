@@ -7,6 +7,10 @@ import { Database } from "sqlite";
 import sqlite3 from "sqlite3";
 
 let database: Database
+const app = express()
+
+app.use(cors())
+app.use(express.json())
 
 ;(async () => {
   database = await sqlite.open({
@@ -19,9 +23,6 @@ let database: Database
   console.log('Redo att göra databasanrop')
 })()
 
-const app = express()
-
-app.use(cors())
 
 app.get("/", async (request, response) => {
     try { 
@@ -33,6 +34,18 @@ app.get("/", async (request, response) => {
         response.status(500).json({error:'Lag hittades ej'})
     
 }})
+
+app.get("/players", async (request, response) => {
+    try { 
+        const players = await database.all("SELECT * FROM players") 
+        response.json (players)
+
+    }catch(error){
+        console.error(error)
+        response.status(500).json({error:'Spelare hittades ej'})
+    
+}})
+
 app.listen(5000, ()=>{
     console.log('http://localhost:5000/')
 })
