@@ -1,11 +1,13 @@
 import Home from './pages/Home'
 import Players from './pages/Players'
+import MyTeam from './pages/MyTeam.tsx'
 import './App.css'
 
 
 
 import {
   createHashRouter,
+  Form,
   Outlet,
   RouterProvider
 } from 'react-router-dom'
@@ -26,6 +28,7 @@ function App() {
      
         { element: <Home />, path: '/' },
         { element: <Players />, path: '/players' },
+        {element: <MyTeam />, path: '/my-team'}
 
 
 

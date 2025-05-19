@@ -1,7 +1,5 @@
-import { error } from "console";
 import cors from "cors";
-import express, { response } from "express";
-import { request } from "https";
+import express from 'express'
 import * as sqlite from "sqlite";
 import { Database } from "sqlite";
 import sqlite3 from "sqlite3";
@@ -46,6 +44,49 @@ app.get("/players", async (request, response) => {
     
 }})
 
+
+
+app.post('/my-team', async ( request, response) =>{
+    const {player_id} = request.body
+    try {
+        if(!player_id){
+             response.status(400).json({error: 'Inget spelar-ID'})
+        }
+        else{
+            await database.run ('INSERT INTO created_team (player_id) VALUES (?)', player_id)
+            response.status(201).json({message: 'Spelare tillagd'})
+        }
+        
+    }catch (error){      
+        console.error(error)
+        response.status(500).json({error:'Spelare kunde ej läggas till'})
+        
+    }
+});
+app.get("/my-team", async (request, response) => {
+    try { 
+        const players = await database.all(`SELECT players.* FROM created_team JOIN players ON players.id = created_team.player_id`) 
+        response.json (players)
+
+    }catch(error){
+        console.error(error)
+        response.status(500).json({error:'Spelare hittades ej'})
+    
+}})
+
+app.delete("/my-team", async (request, response) => {
+    try { 
+       await database.run('DELETE FROM created_team') 
+        response.status(200).json({messasge:'Laget har tagits bort'})
+
+    }catch(error){
+        console.error(error)
+        response.status(500).json({error:'Laget kunde inte tas bort'})
+    
+}})
+
+
+
 app.listen(5000, ()=>{
     console.log('http://localhost:5000/')
-})
+});
