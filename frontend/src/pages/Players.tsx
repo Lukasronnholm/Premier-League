@@ -16,6 +16,29 @@ function Player(){
      
     const [player, setPlayer] = useState<Player[]>([])
     const [message, setMeassage] = useState<string | null>(null)
+    const [playerexist, setPlayerexist] = useState<number[]>([])
+    const [goalkeeper, setGoalkeeper] = useState(0)
+    const [defender, setDefender] = useState(0)
+    const [midfielder, setMidfielder] = useState(0)
+    const [forward, setForward] = useState(0)
+    const [count, setCount] = useState<number>(0)
+    
+
+        useEffect(()=>{
+        async function FetchMyTeam() {
+        try {
+            const response = await fetch ('http://localhost:5000/my-team')  
+            const result = await response.json();
+            setPlayerexist(result.map((player: Player)=> player.id))
+            setCount(result.length)  
+            
+        } catch{
+            console.error('Fel vid inhämtning')
+            }
+        }
+        FetchMyTeam();
+    },[])
+    
     useEffect(()=>{
     async function  fetchPlayers () {
         try {
@@ -23,13 +46,47 @@ function Player(){
             const result = await response.json();
             setPlayer(result)
         } catch {
-            setMeassage('Spelare kunde ej hämtas')
+            console.error('Spelare kunde ej hämtas')
         }
     } fetchPlayers()
     },[])
 
 
+
+
+
 const addPlayer = async (playerId: number) => {
+    if (count >= 11 || playerexist.includes(playerId))
+        return;
+        const playerPosition = player.find(player => player.id === playerId)
+ if (!playerPosition)
+    return;
+
+
+    switch(playerPosition.position){
+    case 'Goalkeeper':
+        if(goalkeeper >=1 )
+            return;
+        setGoalkeeper(prev => prev +1)
+        break;
+        case 'Defender':
+        if(defender >=4 )
+            return;
+        setDefender(prev => prev +1)
+        break;
+        case 'Midfielder':
+        if(midfielder >=4 )
+            return;
+        setMidfielder(prev => prev +1)
+        break;
+        case 'Forward':
+        if(forward >=2 )
+            return;
+        setForward(prev => prev +1)
+        break;
+        default:
+            return;
+}
     try {
          const response = await fetch ('http://localhost:5000/my-team',{
         method: 'POST',
@@ -38,15 +95,16 @@ const addPlayer = async (playerId: number) => {
     
 
     })
-   
     const result = await response.json()
 
+
     if (response.ok){
-        setMeassage(result.message)
+        setCount(prev => prev +1)
+        setPlayerexist([...playerexist, playerId])
+        
     }else{
         setMeassage(result.error)
     }
-    setTimeout(()=> setMeassage(null), 3000)
 }catch {
     setMeassage('Något gick fel')
     setTimeout(()=> setMeassage(null), 3000)
@@ -57,10 +115,17 @@ return(
        
         <>
         <Link to='/my-team'>mitt lag</Link>
-        {message && <p>{message}</p>}
         
              <ul className="ContainerText">{player.map((player)=> (
-                <li key={player.id}>{player.name} {player.position} {player.goals} {player.assists}{player.matches_played}{player.team_id}<button onClick={()=> addPlayer(player.id)}>Lägg till</button></li>))}</ul>
+                <li key={player.id}>{player.name} {player.position} {player.goals} {player.assists}{player.matches_played}{player.team_id}
+                {!playerexist.includes(player.id) && count< 11 && 
+                ((
+                    (player.position === 'Goalkeeper' && goalkeeper < 1) || 
+                    (player.position === 'Defender' && defender < 4) || 
+                    (player.position === 'Midfielder' && midfielder < 4) || 
+                    (player.position === 'Forward' && forward < 2)  )) && 
+                    (<button onClick={()=> addPlayer(player.id)}>Lägg till</button>)}
+                </li>))}</ul>
        </>
        
        )

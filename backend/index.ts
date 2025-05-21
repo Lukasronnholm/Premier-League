@@ -65,7 +65,7 @@ app.post('/my-team', async ( request, response) =>{
 });
 app.get("/my-team", async (request, response) => {
     try { 
-        const players = await database.all(`SELECT players.* FROM created_team JOIN players ON players.id = created_team.player_id`) 
+        const players = await database.all(`SELECT players.* FROM created_team JOIN players ON players.id = created_team.player_id limit 11`) 
         response.json (players)
 
     }catch(error){
