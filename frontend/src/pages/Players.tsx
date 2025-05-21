@@ -15,7 +15,6 @@ interface Player {
 function Player(){
      
     const [player, setPlayer] = useState<Player[]>([])
-    const [message, setMeassage] = useState<string | null>(null)
     const [playerexist, setPlayerexist] = useState<number[]>([])
     const [goalkeeper, setGoalkeeper] = useState(0)
     const [defender, setDefender] = useState(0)
@@ -95,19 +94,12 @@ const addPlayer = async (playerId: number) => {
     
 
     })
-    const result = await response.json()
-
-
-    if (response.ok){
+     await response.json()
         setCount(prev => prev +1)
         setPlayerexist([...playerexist, playerId])
         
-    }else{
-        setMeassage(result.error)
-    }
 }catch {
-    setMeassage('Något gick fel')
-    setTimeout(()=> setMeassage(null), 3000)
+    console.error('Något gick fel')
 
 }
 }

@@ -1,5 +1,6 @@
 import cors from "cors";
-import express from 'express'
+import express, { response } from 'express'
+import { request } from "http";
 import * as sqlite from "sqlite";
 import { Database } from "sqlite";
 import sqlite3 from "sqlite3";
@@ -84,6 +85,19 @@ app.delete("/my-team", async (request, response) => {
         response.status(500).json({error:'Laget kunde inte tas bort'})
     
 }})
+app.get('/:id', async (request, response)=>{
+    try {
+    const teams = await database.all('SELECT * FROM players WHERE team_id=?',[
+        request.params.id ])
+        response.status(200).json(teams)
+    } 
+    catch(error){
+        console.error(error)
+        response.status(500).json('Laget kunde inte hämtas')
+    }
+     
+    
+})
 
 
 

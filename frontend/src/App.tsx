@@ -1,6 +1,7 @@
 import Home from './pages/Home'
 import Players from './pages/Players'
 import MyTeam from './pages/MyTeam.tsx'
+import Teaminfo from './pages/TeamInfo.tsx'
 import './App.css'
 
 
@@ -27,7 +28,8 @@ function App() {
      
         { element: <Home />, path: '/' },
         { element: <Players />, path: '/players' },
-        {element: <MyTeam />, path: '/my-team'}
+        {element: <MyTeam />, path: '/my-team'},
+        {element: <Teaminfo />, path: '/:id'}
 
 
 
