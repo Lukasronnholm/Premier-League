@@ -87,9 +87,11 @@ app.delete("/my-team", async (request, response) => {
 }})
 app.get('/:id', async (request, response)=>{
     try {
-    const teams = await database.all('SELECT * FROM players WHERE team_id=?',[
+    const playerInfo = await database.all('SELECT * FROM players WHERE team_id=?',[
         request.params.id ])
-        response.status(200).json(teams)
+        const teamInfo = await database.all('SELECT * FROM teams WHERE id=?',[
+        request.params.id ])
+        response.status(200).json({playerInfo, teamInfo})
     } 
     catch(error){
         console.error(error)
@@ -98,6 +100,8 @@ app.get('/:id', async (request, response)=>{
      
     
 })
+
+
 
 
 

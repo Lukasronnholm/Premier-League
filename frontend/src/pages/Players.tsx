@@ -50,10 +50,6 @@ function Player(){
     } fetchPlayers()
     },[])
 
-
-
-
-
 const addPlayer = async (playerId: number) => {
     if (count >= 11 || playerexist.includes(playerId))
         return;
