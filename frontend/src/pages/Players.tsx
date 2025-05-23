@@ -16,10 +16,10 @@ function Player(){
      
     const [player, setPlayer] = useState<Player[]>([])
     const [playerexist, setPlayerexist] = useState<number[]>([])
-    const [goalkeeper, setGoalkeeper] = useState(0)
-    const [defender, setDefender] = useState(0)
-    const [midfielder, setMidfielder] = useState(0)
-    const [forward, setForward] = useState(0)
+    const [goalkeeper, setGoalkeeper] = useState<Player[]>([])
+    const [defender, setDefender] = useState<Player[]>([])
+    const [midfielder, setMidfielder] = useState<Player[]>([])
+    const [forward, setForward] = useState<Player[]>([])
     const [count, setCount] = useState<number>(0)
     
 
@@ -50,38 +50,25 @@ function Player(){
     } fetchPlayers()
     },[])
 
+
+
 const addPlayer = async (playerId: number) => {
     if (count >= 11 || playerexist.includes(playerId))
         return;
         const playerPosition = player.find(player => player.id === playerId)
  if (!playerPosition)
     return;
+if (playerPosition.position === 'Goalkeeper')
+    setGoalkeeper ([... goalkeeper, playerPosition])
+else if (playerPosition.position === 'Defender')
+    setDefender ([... defender, playerPosition])
+else if (playerPosition.position === 'Midfielder')
+    setMidfielder ([... midfielder, playerPosition])
+else if (playerPosition.position === 'Forward')
+    setForward ([... forward, playerPosition])
 
 
-    switch(playerPosition.position){
-    case 'Goalkeeper':
-        if(goalkeeper >=1 )
-            return;
-        setGoalkeeper(prev => prev +1)
-        break;
-        case 'Defender':
-        if(defender >=4 )
-            return;
-        setDefender(prev => prev +1)
-        break;
-        case 'Midfielder':
-        if(midfielder >=4 )
-            return;
-        setMidfielder(prev => prev +1)
-        break;
-        case 'Forward':
-        if(forward >=2 )
-            return;
-        setForward(prev => prev +1)
-        break;
-        default:
-            return;
-}
+
     try {
          const response = await fetch ('http://localhost:5000/my-team',{
         method: 'POST',
@@ -91,7 +78,7 @@ const addPlayer = async (playerId: number) => {
 
     })
      await response.json()
-        setCount(prev => prev +1)
+        setCount(value => value +1)
         setPlayerexist([...playerexist, playerId])
         
 }catch {
@@ -108,10 +95,10 @@ return(
                 <li key={player.id}>{player.name} {player.position} {player.goals} {player.assists}{player.matches_played}{player.team_id}
                 {!playerexist.includes(player.id) && count< 11 && 
                 ((
-                    (player.position === 'Goalkeeper' && goalkeeper < 1) || 
-                    (player.position === 'Defender' && defender < 4) || 
-                    (player.position === 'Midfielder' && midfielder < 4) || 
-                    (player.position === 'Forward' && forward < 2)  )) && 
+                    (player.position === 'Goalkeeper' && goalkeeper.length < 1) || 
+                    (player.position === 'Defender' && defender.length < 4) || 
+                    (player.position === 'Midfielder' && midfielder.length < 4) || 
+                    (player.position === 'Forward' && forward.length < 2)  )) && 
                     (<button onClick={()=> addPlayer(player.id)}>Lägg till</button>)}
                 </li>))}</ul>
        </>
