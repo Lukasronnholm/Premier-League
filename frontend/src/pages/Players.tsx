@@ -12,7 +12,7 @@ interface Player {
 }
 
 function Player() {
-    const [player, setPlayer] = useState<Player[]>([]);
+    const [players, setPlayers] = useState<Player[]>([]);
     const [playerexist, setPlayerexist] = useState<number[]>([]);
     const [goalkeeper, setGoalkeeper] = useState<Player[]>([]);
     const [defender, setDefender] = useState<Player[]>([]);
@@ -59,7 +59,7 @@ function Player() {
             try {
                 const response = await fetch("http://localhost:5000/players");
                 const result = await response.json();
-                setPlayer(result);
+                setPlayers(result);
             } catch {
                 console.error("Spelare kunde ej hämtas");
             }
@@ -69,7 +69,7 @@ function Player() {
 
     const addPlayer = async (playerId: number) => {
         if (count >= 11 || playerexist.includes(playerId)) return;
-        const playerPosition = player.find((player) => player.id === playerId);
+        const playerPosition = players.find((player) => player.id === playerId);
         if (!playerPosition) return;
         if (playerPosition.position === "Goalkeeper")
             setGoalkeeper([...goalkeeper, playerPosition]);
@@ -98,7 +98,7 @@ function Player() {
             <Link to="/my-team">mitt lag</Link>
 
             <ul className="ContainerText">
-                {player.map((player) => (
+                {players.map((player) => (
                     <li key={player.id}>
                         {player.name} {player.position} {player.goals}{" "}
                         {player.assists}

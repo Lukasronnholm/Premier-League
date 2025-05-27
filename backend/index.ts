@@ -54,7 +54,7 @@ app.post('/my-team', async ( request, response) =>{
              response.status(400).json({error: 'Inget spelar-ID'})
         }
         else{
-            await database.run ('INSERT INTO created_team (player_id) VALUES (?)', player_id)
+            await database.run ('INSERT INTO created_team_players (team_id, player_id) VALUES (?,?)',[1, player_id] )
             response.status(201).json({message: 'Spelare tillagd'})
         }
         
@@ -66,7 +66,12 @@ app.post('/my-team', async ( request, response) =>{
 });
 app.get("/my-team", async (request, response) => {
     try { 
-        const players = await database.all(`SELECT players.* FROM created_team JOIN players ON players.id = created_team.player_id limit 11`) 
+        const players = await database.all(
+            `SELECT players.* 
+            FROM created_team_players 
+            JOIN players ON players.id = created_team_players.player_id 
+            WHERE created_team_players.team_id = 1 
+            LIMIT 11`) 
         response.json (players)
 
     }catch(error){
@@ -77,8 +82,8 @@ app.get("/my-team", async (request, response) => {
 
 app.delete("/my-team", async (request, response) => {
     try { 
-       await database.run('DELETE FROM created_team') 
-        response.status(200).json({messasge:'Laget har tagits bort'})
+       await database.run('DELETE FROM created_team_players WHERE team_id = 1') 
+        response.status(200).json({message:'Laget har tagits bort'})
 
     }catch(error){
         console.error(error)
