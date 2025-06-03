@@ -35,14 +35,19 @@ function TeamInfo() {
         if (
             getTeamsUrl === "#/1" ||
             getTeamsUrl === "#/2" ||
+            getTeamsUrl === "#/7" ||
             getTeamsUrl === "#/9" ||
-            getTeamsUrl === "#/13" ||
+            getTeamsUrl === "#13" ||
             getTeamsUrl === "#/16" ||
             getTeamsUrl === "#/18"
         ) {
-            setTeamsUrlbackground("red");
-        } else if (getTeamsUrl === "#/3" || getTeamsUrl === "#/10") {
-            setTeamsUrlbackground("black");
+            setTeamsUrlbackground("#dd061b");
+        } else if (
+            getTeamsUrl === "#/3" ||
+            getTeamsUrl === "#/10" ||
+            getTeamsUrl === "#/17"
+        ) {
+            setTeamsUrlbackground("white");
         } else if (
             getTeamsUrl === "#/5" ||
             getTeamsUrl === "#/8" ||
@@ -53,9 +58,13 @@ function TeamInfo() {
         ) {
             setTeamsUrlbackground("darkblue");
         } else if (getTeamsUrl === "#/6" || getTeamsUrl === "#/15") {
-            setTeamsUrlbackground("purple");
+            setTeamsUrlbackground("#7c2c3b");
+        } else if (getTeamsUrl === "#/4") {
+            setTeamsUrlbackground("#a2c5df");
+        } else if (getTeamsUrl === "#/12") {
+            setTeamsUrlbackground("#f3c630");
         }
-    }, [teamsUrlbackground]);
+    }, [id]);
 
     const divStyle = {
         backgroundColor: teamsUrlbackground,
@@ -75,47 +84,54 @@ function TeamInfo() {
             }
         }
         fetchPlayerInfo();
-    }, []);
+    }, [id]);
 
     return (
         <>
-            <div style={divStyle}>
+            <div className="teamContainer">
                 {imageForTeam && (
                     <img
                         src={imageForTeam.src}
                         title={imageForTeam.title}
                         alt={imageForTeam.description}
+                        className="teamLogo"
                     />
                 )}
+                {teamInfo &&
+                    teamInfo.map((team) => (
+                        <div key={team.id}>
+                            <h1 className="teamTitle">{team.name}</h1>
+                        </div>
+                    ))}
+                <div style={divStyle} className="teamFront"></div>
 
                 {teamInfo &&
                     teamInfo.map((team) => (
                         <div key={team.id}>
-                            <h1>{team.name}</h1>
-                            <ul>
-                                <li>
-                                    {team.position}
-                                    {team.wins}
-                                    {team.draws}
-                                    {team.losses}
-                                    {team.goal_difference}
-                                    {team.points}
-                                </li>
-                            </ul>{" "}
+                            <ul className="teamStats">
+                                <li>Position: {team.position}</li>
+                                <li>Wins: {team.wins}</li>
+                                <li>Draws: {team.draws}</li>
+                                <li>Losses: {team.losses}</li>
+                                <li> GD: {team.goal_difference}</li>
+                                <li>Points: {team.points}</li>
+                            </ul>
                         </div>
                     ))}
+                <div className="playerStatsContainer">
+                    {playerInfo.map((player) => (
+                        <section key={player.id}>
+                            <ul className="playerStats">
+                                <li>Name: {player.name}</li>
+                                <li>Position: {player.position}</li>
+                                <li>Goals: {player.goals}</li>
+                                <li>Assists: {player.assists}</li>
+                                <li>Matches Played: {player.matches_played}</li>
+                            </ul>
+                        </section>
+                    ))}
+                </div>
             </div>
-
-            <ul className="ContainerText">
-                {playerInfo.map((player) => (
-                    <li key={player.id}>
-                        {player.name} {player.position} {player.goals}{" "}
-                        {player.assists}
-                        {player.matches_played}
-                        {player.team_id}
-                    </li>
-                ))}
-            </ul>
         </>
     );
 }

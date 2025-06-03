@@ -1,6 +1,5 @@
 import cors from "cors";
-import express, { response } from 'express'
-import { request } from "http";
+import express from 'express'
 import * as sqlite from "sqlite";
 import { Database } from "sqlite";
 import sqlite3 from "sqlite3";
@@ -23,7 +22,7 @@ app.use(express.json())
 })()
 
 
-app.get("/", async (request, response) => {
+app.get("/", async (_request, response) => {
     try { 
         const teams = await database.all("SELECT * FROM teams") 
         response.json (teams)
@@ -34,7 +33,7 @@ app.get("/", async (request, response) => {
     
 }})
 
-app.get("/players", async (request, response) => {
+app.get("/players", async (_request, response) => {
     try { 
         const players = await database.all("SELECT * FROM players") 
         response.json (players)
@@ -64,7 +63,7 @@ app.post('/my-team', async ( request, response) =>{
         
     }
 });
-app.get("/my-team", async (request, response) => {
+app.get("/my-team", async (_request, response) => {
     try { 
         const players = await database.all(
             `SELECT players.* 
@@ -80,7 +79,7 @@ app.get("/my-team", async (request, response) => {
     
 }})
 
-app.delete("/my-team", async (request, response) => {
+app.delete("/my-team", async (_request, response) => {
     try { 
        await database.run('DELETE FROM created_team_players WHERE team_id = 1') 
         response.status(200).json({message:'Laget har tagits bort'})

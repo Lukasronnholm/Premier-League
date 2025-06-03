@@ -23,9 +23,11 @@ CREATE TABLE created_teams (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT
 NULL);
 
 
-CREATE TABLE created_team_players ( id INTEGER PRIMARY KEY AUTOINCREMENT, team_i
-d INTEGER NOT NULL, player_id INTEGER NOT NULL, FOREIGN KEY (team_id) REFERENCES
- created_teams(id), FOREIGN KEY (player_id) REFERENCES players(id));
+CREATE TABLE created_team_players ( 
+id INTEGER PRIMARY KEY AUTOINCREMENT, team_id 
+INTEGER NOT NULL, player_id INTEGER NOT NULL, 
+FOREIGN KEY (team_id) REFERENCES created_teams(id), 
+FOREIGN KEY (player_id) REFERENCES players(id));
 
 
 INSERT INTO teams (id, name, position, played, wins, draws, losses, goal_difference, points) VALUES 

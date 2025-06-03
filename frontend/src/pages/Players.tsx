@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 
 interface Player {
     id: number;
@@ -95,32 +94,44 @@ function Player() {
     };
     return (
         <>
-            <Link to="/my-team">mitt lag</Link>
-
-            <ul className="ContainerText">
+            {" "}
+            <h1>Create Team</h1>
+            <section className="createPlayerText">
+                <p>
+                    Create a Team with maximum of 11 players (1 Goalkeeper 4
+                    Defenders 4 Midfielders and 2 Forwards)
+                </p>
+            </section>
+            <div className="playerChoiceContainer">
                 {players.map((player) => (
-                    <li key={player.id}>
-                        {player.name} {player.position} {player.goals}{" "}
-                        {player.assists}
-                        {player.matches_played}
-                        {player.team_id}
-                        {!playerexist.includes(player.id) &&
-                            count < 11 &&
-                            ((player.position === "Goalkeeper" &&
-                                goalkeeper.length < 1) ||
-                                (player.position === "Defender" &&
-                                    defender.length < 4) ||
-                                (player.position === "Midfielder" &&
-                                    midfielder.length < 4) ||
-                                (player.position === "Forward" &&
-                                    forward.length < 2)) && (
-                                <button onClick={() => addPlayer(player.id)}>
-                                    Lägg till
-                                </button>
-                            )}
-                    </li>
+                    <div key={player.id} className="playerChoiceBoxes">
+                        <ul>
+                            <li>Name: {player.name}</li>
+                            <li>Position: {player.position}</li>
+                            <li>Goals: {player.goals}</li>
+                            <li>Assists: {player.assists}</li>
+                            <li>Matches Played: {player.matches_played}</li>
+                            {!playerexist.includes(player.id) &&
+                                count < 11 &&
+                                ((player.position === "Goalkeeper" &&
+                                    goalkeeper.length < 1) ||
+                                    (player.position === "Defender" &&
+                                        defender.length < 4) ||
+                                    (player.position === "Midfielder" &&
+                                        midfielder.length < 4) ||
+                                    (player.position === "Forward" &&
+                                        forward.length < 2)) && (
+                                    <button
+                                        onClick={() => addPlayer(player.id)}
+                                        className="playerChoiceButton"
+                                    >
+                                        Lägg till
+                                    </button>
+                                )}
+                        </ul>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </>
     );
 }

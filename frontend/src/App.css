@@ -1,42 +1,313 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+body{
+  padding-top: 200px;
+  background-color: black;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.navbarContainer {
+display: flex;
+justify-content: space-between;
+background-color: #004926;
+align-items: center;
+font-size: 1.2rem;
+padding: 10px 20px;
+height: 50px;
+width: 90%;
+position:fixed;
+top: 10px;
+left: 50%;
+transform: translate(-50%);
+z-index: 9999;
+}
+.navbarLogo{
+height: 60px;
+}
+.h1Navbar{
+  font-size: 60px;
+  color: white;
+}
+
+
+.menuItems{
+  list-style: none;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.navbarLinks{
+  text-decoration: none;
+  color: white;
+  padding: 10px 20px;
+}
+.navbarLinks li{
+  padding-right: 10px;
+}
+
+.navbarLinks:hover{
+background-color: #012e18;
+color: rgb(255, 255, 255);
+border-radius: 5px;
+transition: all 0.2s ease-in-out;
+}
+
+.fa-bars, .fa-times{
+color: white;  cursor: pointer;
+}
+.Hamburger-Cross-Icons{
+  display: none;
+}
+
+.homeImgContainer{
+  height: 600px;
+  overflow:hidden;
+  position: relative;
+}
+.pitchImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: bottom;
+ display: block;
+}
+
+.fadeImg{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0 ) 50%, rgb(0, 0, 0) 80%);
+}
+
+.centerText{
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(255, 255, 255);
+  font-size: 120px;
+}
+
+.homeContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+}
+
+.teamsBoxes{
+  flex: 20%;
+  margin: 5px;
+  padding: 20px;
+  background-color:#004926;
   text-align: center;
+  transition: transform 0.2s;
+}
+.teamsBoxes:hover{
+  background-color: #012e18;
+  transform: scale(1.1);
+}
+.teamsLinks{
+  color: rgb(255, 255, 255);
+text-decoration: none;
+font-size: 22px;}
+
+.teamsLinks:hover{
+  color: white;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.teamContainer{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.teamLogo{
+ height: 60px;
+ width: 60px;
+  
+}
+.teamTitle{
+  font-size: 60px;
+}
+.teamFront{
+  width: 80%;
+  height: 5px;
   }
-  to {
-    transform: rotate(360deg);
+
+
+.teamStats{
+  padding: 20px;
+  width: 1000px;
+  background-color: #004926;
+  list-style: none;
+  font-size: 24px;
+}
+.teamStats li{
+  margin-bottom: 10px;
+}
+.allPlayerStatsContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background-color: #004926;
+  margin: 1%;
+}
+
+.playerStatsContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 120px;
+  padding: 20px;
+}
+.playerStats{
+  width: 80%;
+  padding: 20px;
+  background-color:#004926;
+  text-align: center;
+  justify-content: center;
+  list-style: none;
+  min-height: 200px;
+}
+.playerStats li{
+  margin-bottom: 15px;
+}
+.createPlayerText{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.playerChoiceContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;  
+  gap: 20px;
+  padding: 120px;
+}
+
+.playerChoiceBoxes{
+  width: 25%;
+  box-sizing: border-box;
+    background-image: linear-gradient(to top right, #004926,#004926, black,black  ) ;
+
+  font-size: 20px;
+}
+
+.playerChoiceBoxes li{
+  list-style: none;
+}
+.playerChoiceButton{
+  margin-top: 10px;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color:#004926;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  width: 120px;
+  outline: 1px solid white;
+}
+
+.playerChoiceButton:hover{
+  background-color: #012e18;
+  color: white;
+
+}
+
+.myTeamTitle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #004926;
+  font-size: 40px;
+  height: 60px;
+}
+
+.myTeamContainer{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: center;  
+  gap: 20px;
+  padding: 120px;
+}
+
+.myTeamContainer li{
+  list-style: none;
+  padding: 10px;
+
+}
+.myTeamPlayerBoxes{
+    width: 25%;
+  background-image: linear-gradient(to top right, #004926,#004926, black,black  ) ;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+.deleteButtonContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.deleteButton{
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color:#004926;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  width: 20%;
+  outline: 1px solid white;
+}
+.deleteButton:hover{
+  background-color: #012e18;
+  color: white;
+
+}
+
+.footerContainer{
+  background-color: #012e18;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+@media screen and (max-width: 850px){
+  .menuItems{
+    flex-direction: column;
+    background-color: #004926;
+    width: 100%;
+    position: absolute;
+    top: 50px;
+    left: -110%;
+    padding: 40px 0;
+    transition: all 0.3s ease-in-out;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .menuItems.active{
+    left: 0;
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .navbarLinks{
+    display: block;
+    width: 100%;
+    padding: 1.5rem 0;
+    text-align: center;
+  }
+  .Hamburger-Cross-Icons{
+    display: block; 
+    z-index: 1000;
+  }
 }
