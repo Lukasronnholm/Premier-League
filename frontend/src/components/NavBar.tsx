@@ -12,7 +12,7 @@ function Navbar() {
     return (
         <nav className="navbarContainer">
             <img src={Build_a_Team} alt="Logo" className="navbarLogo" />
-            <div className="Hamburger-Cross-Icons" onClick={handleClick}>
+            <div className="hamburgerCrossIcons" onClick={handleClick}>
                 <i className={open ? "fas fa-times" : "fas fa-bars"}></i>
             </div>
             <ul className={open ? "menuItems active" : "menuItems"}>

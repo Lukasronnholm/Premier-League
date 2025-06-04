@@ -54,7 +54,7 @@ transition: all 0.2s ease-in-out;
 .fa-bars, .fa-times{
 color: white;  cursor: pointer;
 }
-.Hamburger-Cross-Icons{
+.hamburgercrossIcons{
   display: none;
 }
 
@@ -321,7 +321,7 @@ font-size: 60px;
     padding: 1.5rem 0;
     text-align: center;
   }
-  .Hamburger-Cross-Icons{
+  .hamburgerCrossIcons{
     display: block; 
     z-index: 1000;
   }
