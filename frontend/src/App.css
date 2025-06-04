@@ -54,7 +54,7 @@ transition: all 0.2s ease-in-out;
 .fa-bars, .fa-times{
 color: white;  cursor: pointer;
 }
-.hamburgercrossIcons{
+.hamburgerCrossIcons{
   display: none;
 }
 
