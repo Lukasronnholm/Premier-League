@@ -179,10 +179,25 @@ font-size: 22px;}
 .playerStats li{
   margin-bottom: 15px;
 }
+.createPlayerH1{
+display: flex;
+align-items: center;
+justify-content:center ;
+font-size: 60px;
+}
+.createPlayerContainer{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .createPlayerText{
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  background-color: #004926;
+  
+
 }
 .playerChoiceContainer{
   display: flex;

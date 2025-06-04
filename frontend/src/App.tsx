@@ -1,5 +1,5 @@
 import Home from "./pages/Home";
-import Players from "./pages/Players";
+import CreateTeam from "./pages/CreateTeam.tsx";
 import MyTeam from "./pages/MyTeam.tsx";
 import Teaminfo from "./pages/TeamInfo.tsx";
 import Navbar from "./components/NavBar.tsx";
@@ -23,7 +23,7 @@ function App() {
             ),
             children: [
                 { element: <Home />, path: "/" },
-                { element: <Players />, path: "/players" },
+                { element: <CreateTeam />, path: "/create-team" },
                 { element: <MyTeam />, path: "/my-team" },
                 { element: <Teaminfo />, path: "/:id" },
             ],

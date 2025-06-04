@@ -94,8 +94,7 @@ function Player() {
     };
     return (
         <>
-            {" "}
-            <h1>Create Team</h1>
+            <h1 className="createPlayerH1">Create Team</h1>
             <section className="createPlayerText">
                 <p>
                     Create a Team with maximum of 11 players (1 Goalkeeper 4

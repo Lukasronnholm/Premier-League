@@ -99,7 +99,7 @@ app.get('/:id', async (request, response)=>{
     } 
     catch(error){
         console.error(error)
-        response.status(500).json('Laget kunde inte hämtas')
+        response.status(500).json({error:'Laget kunde inte hämtas'})
     }
      
     

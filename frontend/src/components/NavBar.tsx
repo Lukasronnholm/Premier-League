@@ -22,7 +22,7 @@ function Navbar() {
                     </Link>
                 </li>
                 <li>
-                    <Link to="/players" className="navbarLinks">
+                    <Link to="/create-team" className="navbarLinks">
                         Create Team
                     </Link>
                 </li>

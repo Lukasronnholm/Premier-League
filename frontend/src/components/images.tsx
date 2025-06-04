@@ -24,7 +24,7 @@ const images = [
         id: 1,
         src: liverpool,
         title: "Liverpool",
-        description: "Liverpopol",
+        description: "Liverpool",
     },
     {
         id: 2,
@@ -42,7 +42,7 @@ const images = [
         id: 4,
         src: manchestercity,
         title: "Manchester City",
-        description: "Manchetser City",
+        description: "Manchester City",
     },
     {
         id: 5,
@@ -59,8 +59,8 @@ const images = [
     {
         id: 7,
         src: nottinghamforest,
-        title: "Notthingham Forest",
-        description: "Notthingham Forest",
+        title: "Nottingham Forest",
+        description: "Nottingham Forest",
     },
     {
         id: 8,

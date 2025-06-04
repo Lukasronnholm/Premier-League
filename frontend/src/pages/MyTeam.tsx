@@ -77,16 +77,14 @@ function MyTeam() {
                     </section>
                 ))}
             </div>
-            {goalsValue > 0 ||
-                assistsValue > 0 ||
-                (matchPlayedValue > 0 && (
-                    <section className="allPlayerStatsContainer">
-                        <h3>Stats for My Team</h3>
-                        <p>Total Goals: {goalsValue}</p>
-                        <p>Total Assists: {assistsValue}</p>
-                        <p>Total Matches Played: {matchPlayedValue}</p>
-                    </section>
-                ))}
+            {(goalsValue > 0 || assistsValue > 0 || matchPlayedValue > 0) && (
+                <section className="allPlayerStatsContainer">
+                    <h3>Stats for My Team</h3>
+                    <p>Total Goals: {goalsValue}</p>
+                    <p>Total Assists: {assistsValue}</p>
+                    <p>Total Matches Played: {matchPlayedValue}</p>
+                </section>
+            )}
 
             <div className="deleteButtonContainer">
                 <button onClick={deleteTeam} className="deleteButton">
