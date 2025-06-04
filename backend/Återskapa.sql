@@ -17,7 +17,8 @@ CREATE TABLE players (
     assists INTEGER DEFAULT 0,
     matches_played INTEGER DEFAULT 0,
     team_id INTEGER NOT NULL,
-    FOREIGN KEY (team_id) REFERENCES teams(id));
+    FOREIGN KEY (team_id) REFERENCES teams(id)
+);
 
 CREATE TABLE created_teams (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT
 NULL);
