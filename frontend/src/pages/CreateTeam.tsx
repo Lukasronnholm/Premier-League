@@ -95,8 +95,8 @@ function Player() {
     return (
         <>
             <h1 className="createPlayerH1">Create Team</h1>
-            <section className="createPlayerText">
-                <p>
+            <section className="createPlayerContainer">
+                <p className="createPlayerText">
                     Create a Team with maximum of 11 players (1 Goalkeeper 4
                     Defenders 4 Midfielders and 2 Forwards)
                 </p>
